@@ -4,7 +4,7 @@
     Additionaly you can choose which volume want to scan.
 #>
 
-function Check-FileSystem {
+function Repair-Disk {
     param(
         [string]$Volume = ""
     )
@@ -19,11 +19,10 @@ function Check-FileSystem {
         Repair-Volume -DriveLetter $Volume -SpotFix
         return;
     }
-    $a = Get-Partition | Select-Object DriveLetter
     $volumeString = ""
-    foreach($item in $a) {
-        if($item -ne "") {
-            $volumeString += $item.DriveLetter
+    Get-Partition | ForEach-Object {
+        if($_.DriveLetter -ne "") {
+            $volumeString += $_.DriveLetter
         }
     }
     if($volumeString -ne "") {
@@ -31,4 +30,3 @@ function Check-FileSystem {
     }
 }
 
-Check-FileSystem -Volume C
