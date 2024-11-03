@@ -6,8 +6,8 @@
 function Remove-Downloads {
     param(
         [string]$Path = "", 
-        [string[]]$ExcludedFolders)
-        [int]$MaxDays = 90
+        [string[]]$ExcludedFolders,
+        [int]$MaxDays = 90)
 
     if ($Path -eq "") {
         $Path = $env:USERPROFILE + "\Downloads"
