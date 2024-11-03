@@ -48,7 +48,6 @@ function Add-GitRepositories {
 
     foreach($repo in $Repositories) {
         $CloneString = "https://github.com/" + $User + "/" + $repo.name + ".git"
-        Write-Host $CloneString
         git clone --recursive $CloneString
     }
 
